@@ -19,12 +19,13 @@ points = solve_poly_system([fx, fy], x, y)
 max_point = None
 min_point = None
 for point in points:
+    # Calculate r, t, s for each point
     point = {x: point[0], y: point[1]}
     r = fxx.subs(point)
     t = fyy.subs(point)
     s = fxy.subs(point)
-    d = r*t - s**2
-    if d > 0:
+    # If rt-s^2 > 0, set minimum point/maximum point
+    if r*t - s**2 > 0:
         if r > 0 or t > 0:
             min_point = point
         if r < 0 or t < 0:
